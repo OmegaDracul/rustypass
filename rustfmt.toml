@@ -1,0 +1,12 @@
+combine_control_expr = false
+wrap_comments = true
+comment_width = 70
+condense_wildcard_suffixes = true
+control_brace_style = "ClosingNextLine"
+brace_style = "SameLineWhere"
+format_strings = true
+hard_tabs = true
+imports_layout = "Vertical"
+merge_imports = true
+force_multiline_blocks = true
+reorder_impl_items = true

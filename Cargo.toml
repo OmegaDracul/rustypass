@@ -1,0 +1,22 @@
+[package]
+name = "rustypass"
+version = "0.1.0"
+authors = ["OmegaDracul <salimabdu008@gmail.com>"]
+edition = "2018"
+
+[lib]
+name = "rustypasslib"
+path = "src/lib.rs"
+
+[dependencies]
+easy_password = "0.1.1"
+# tokio = "0.1.18"
+# self_encryption = "0.13.0"
+# short-crypt = "1.0.6"
+# encryptfile = "0.1.3"
+# dirs = "1.0.5"
+# glob = "0.3.0"
+# secstr = "0.3.1"
+# bcrypt = "0.4.0"
+# hmac = "0.7.0"
+# sha2 = "0.8.0"
