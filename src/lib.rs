@@ -348,6 +348,7 @@ fn create_account() {
 				let password = hash_password(&password, secure_key.as_ref(), 12).unwrap();
 				fs::write(account_path, format!("{}\n{}", username, password)).unwrap();
 				println!("Account created");
+				wait_for_input();
 			}
 			else {
 				println!("Secure keys do not match")
@@ -360,6 +361,8 @@ fn create_account() {
 	else {
 		println!("The account you're trying to create already exists")
 	}
+
+	clear_screen()
 }
 
 pub fn access_accounts() {
@@ -371,9 +374,28 @@ pub fn access_accounts() {
 
 pub fn delete_account() {
 	// TODO: Make it possible for the user to delete their account
-	println!("Deleting an account");
-	wait_for_input();
-	clear_screen();
+
+	// First would be make sure they're deleting the right account
+	println!("Which account would you like to delete?");
+	let mut account = String::new();
+	read_user_input(&mut account)
+		.trim()
+		.clone_into(&mut account);
+
+	let account_path = format!("accounts/{}", account);
+	let account_exists = Path::new(&account_path).exists();
+
+	// Next would be removing the file
+	if account_exists {
+		fs::remove_file(&account_path).unwrap();
+		println!("Account deleted");
+		wait_for_input();
+		clear_screen();
+	}
+	else {
+		println!("The account doesn't exist");
+		wait_for_input();
+	}
 }
 
 pub fn change_password() {
@@ -388,6 +410,13 @@ pub fn change_password() {
 		_ => println!("Wrong input received... Going back"),
 	}
 
+	wait_for_input();
+	clear_screen();
+}
+
+pub fn delete_password() {
+	// TODO: Have the user be able to delete a password
+	println!("Deleting a password");
 	wait_for_input();
 	clear_screen();
 }
@@ -450,13 +479,6 @@ fn password_changing_process() {
 		}
 	}
 	// Overwrite the old password
-}
-
-pub fn delete_password() {
-	// TODO: Have the user be able to delete a password
-	println!("Deleting a password");
-	wait_for_input();
-	clear_screen();
 }
 
 /* Functions to make things easier */
