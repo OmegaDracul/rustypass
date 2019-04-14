@@ -315,6 +315,12 @@ fn create_account() {
 
 		println!();
 
+		println!("Enter email:");
+		let mut email = String::new();
+		read_user_input(&mut email).trim().clone_into(&mut email);
+
+		println!();
+
 		println!("Enter account password:");
 		let mut password = String::new();
 		read_user_input(&mut password)
@@ -346,7 +352,16 @@ fn create_account() {
 
 			if secure_key == confirm_secure_key {
 				let password = hash_password(&password, secure_key.as_ref(), 12).unwrap();
-				fs::write(account_path, format!("{}\n{}", username, password)).unwrap();
+				fs::write(
+					account_path,
+					format!(
+						"Username: {}
+Email: {}
+Encrypted Password: {}",
+						username, email, password
+					),
+				)
+				.unwrap();
 				println!("Account created");
 				wait_for_input();
 			}
