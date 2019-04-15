@@ -222,7 +222,7 @@ pub fn logged_in_experience() {
 		println!(
 			"1. Create a new account
 2. Access an account
-3. Change account password
+3. Change user password
 4. Delete account
 
 q to quit
@@ -245,7 +245,7 @@ q to quit
 			}
 			"3" => {
 				println!();
-				change_password();
+				change_user_password();
 			}
 			"4" => {
 				println!();
@@ -388,8 +388,6 @@ pub fn access_accounts() {
 }
 
 pub fn delete_account() {
-	// TODO: Make it possible for the user to delete their account
-
 	// First would be make sure they're deleting the right account
 	println!("Which account would you like to delete?");
 	let mut account = String::new();
@@ -413,7 +411,7 @@ pub fn delete_account() {
 	}
 }
 
-pub fn change_password() {
+pub fn change_user_password() {
 	// TODO: Have the user be able to change their password
 	println!("Are you sure you want to change your password? Y/y or N/n");
 	let mut answer = String::new();
