@@ -282,6 +282,8 @@ pub fn new_account() {
 	else {
 		create_account();
 	}
+
+	clear_screen()
 }
 
 fn create_account() {
