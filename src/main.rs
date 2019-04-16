@@ -1,6 +1,6 @@
-extern crate rustypasslib;
+#![feature(toowned_clone_into)]
 
-use std::io;
+extern crate rustypasslib;
 
 fn main() {
 	println!("Welcome to rustypass");
@@ -18,10 +18,9 @@ q to quit
 		);
 
 		let mut user_choice = String::new();
-		io::stdin().read_line(&mut user_choice).unwrap();
-		let input = user_choice.trim();
+		rustypasslib::read_user_input(&mut user_choice).trim().clone_into(&mut user_choice);
 
-		match input {
+		match user_choice.as_str() {
 			"1" => {
 				println!();
 				rustypasslib::create_directory()
@@ -40,8 +39,7 @@ q to quit
 			}
 			_ => {
 				eprintln!("Invalid choice");
-				let mut input = String::new();
-				io::stdin().read_line(&mut input).unwrap();
+				rustypasslib::wait_for_input();
 			}
 		}
 	}

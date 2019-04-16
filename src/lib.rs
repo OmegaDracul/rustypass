@@ -282,9 +282,6 @@ pub fn new_account() {
 	else {
 		create_account();
 	}
-
-	wait_for_input();
-	clear_screen();
 }
 
 fn create_account() {
@@ -427,8 +424,8 @@ pub fn change_user_password() {
 	clear_screen();
 }
 
-pub fn delete_password() {
-	// TODO: Have the user be able to delete a password
+pub fn delete_user() {
+	// TODO: Have the user be able to delete their user account
 	println!("Deleting a password");
 	wait_for_input();
 	clear_screen();
@@ -544,12 +541,12 @@ fn create_user_space(username: &str, password: &str) -> User {
 	user
 }
 
-fn wait_for_input() {
+pub fn wait_for_input() {
 	let mut input = String::new();
 	stdio::stdin().read_line(&mut input).unwrap();
 }
 
-fn read_user_input(value: &mut String) -> String {
+pub fn read_user_input(value: &mut String) -> String {
 	// let mut confirm_new_password = String::new();
 	// stdio::stdin().read_line(&mut confirm_new_password).unwrap();
 	// let confirm_new_password = confirm_new_password.trim();
